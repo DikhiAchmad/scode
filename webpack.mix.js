@@ -16,9 +16,29 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps().version();
 
     mix.styles([
-        './resources/css/custom.css',
+        './resources/css/custom-page.css',
     ],'public/css/bundle.css').version();
 
     mix.scripts([
-        './resources/js/custom.js',
+        './resources/js/custom-page.js',
     ], 'public/js/bundle.js').version();
+
+    mix.styles([
+        './resources/css/bootstrap.min.css',
+        './resources/css/style.css',
+        './resources/css/custom.css',
+        './resources/css/components.css'
+    ],'public/css/dashboard.css').version();
+
+    mix.scripts([
+        './resources/js/jquery-3.3.1.min.js',
+        './resources/js/popper.min.js',
+        './resources/js/bootstrap.min.js',
+        './resources/js/jquery.nicescroll.min.js',
+        './resources/js/moment.min.js',
+        './resources/js/stisla.js',
+        './resources/js/scripts.js',
+        './resources/js/custom.js',
+        './resources/js/page/components-table.js',
+        './resources/js/page/index.js'
+    ], 'public/js/dashboard.js').version();

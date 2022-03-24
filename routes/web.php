@@ -22,6 +22,9 @@ Route::get('/kelas', function () {
 Route::get('/id', function () {
     return view('users.kelas.detail');
 });
+Route::get('/dashboard', function () {
+    return view('users.dashboard.layout.index');
+});
 
 Auth::routes();
 
