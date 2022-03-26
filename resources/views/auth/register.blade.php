@@ -28,13 +28,12 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <select class="form-select form-control" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select form-control" aria-label="Jenis Kelamin" name="jenis_kelamin">
+                            <option selected>Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
                         </select>
-                        @error('telp')
+                        @error('jenis_kelamin')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -54,6 +53,16 @@
                     <div class="mb-4">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                             required autocomplete="current-password" placeholder="Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <input id="password-confirm" type="password"
+                            class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
+                            required autocomplete="new-password" placeholder="Konfirmasi Password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
