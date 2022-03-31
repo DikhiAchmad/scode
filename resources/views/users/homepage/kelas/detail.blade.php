@@ -8,12 +8,11 @@
         </div>
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <img src="{{ asset('assets/image/banner.jpg') }}" alt="focusing study" class="image-full">
+                <img src="{{ asset('assets/image/' . $details->gambar) }}" alt="focusing study" class="image-full">
             </div>
             <div class="col-lg-6 description">
-                <h1 class="title">Belajar PHP untuk Pemula</h1>
-                <p class="desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer yang digunakan pada
-                    bagian back-end website untuk mengatur logika dan interaksi dengan database.</p>
+                <h1 class="title">{{ $details->nama_kelas }}</h1>
+                <p class="desc-kelas">{{ $details->deskripsi }}</p>
                 <a href="" class="link-navy btn-square btn">Gabung Kelas</a>
             </div>
         </div>

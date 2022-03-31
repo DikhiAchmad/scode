@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\ContentKelasController;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardPengajarController;
+use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\KelolaPengajarController;
+use App\Http\Controllers\KelolaUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +21,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('users.homepage.index');
-});
-Route::get('/kelas', function () {
-    return view('users.kelas.index');
-});
-Route::get('/id', function () {
-    return view('users.kelas.detail');
-});
-Route::get('/dashboard', function () {
-    return view('users.dashboard.layout.index');
-});
+Route::get('/', [HomepageController::class, 'index']);
+Route::get('/list_kelas', [HomepageController::class, 'kelas']);
+Route::get('/kelas_detail/{id}', [HomepageController::class, 'show'])->name('kelas.show');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard/admin', function () {
+    return view('admin.kelola_user.index');
+});
+Route::group([
+    'prefix' => 'users',
+    'middleware' => 'auth'
+], function () {
+    Route::resource('/dashboard', DashboardUserController::class);
+    Route::resource('/kelas_saya', ContentKelasController::class);
+});
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'auth'
+], function () {
+    Route::resource('/admin_dashboard', DashboardAdminController::class);
+    Route::resource('/kelola_pengajar', KelolaPengajarController::class);
+    Route::resource('/kelola_users', KelolaUserController::class);
+});
+Route::group([
+    'prefix' => 'pengajar',
+    'middleware' => 'auth'
+], function () {
+    Route::resource('/pengajar_dashboard', DashboardPengajarController::class);
+});
+
+// Route::get('/home', [HomeController::class, 'index'])->name('home');

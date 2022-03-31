@@ -136,6 +136,10 @@ body {
 .card-kelas .card-desc-kelas {
     color: #8F8F8F;
     font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 /* end section 3 */
 

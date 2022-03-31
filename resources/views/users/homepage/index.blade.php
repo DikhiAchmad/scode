@@ -58,39 +58,22 @@
             <p class="desc">kelas yang paling banyak diambil oleh member kami.</p>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card-kelas">
-                    <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                    <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                    <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer yang digunakan
-                        pada
-                        bagian back-end...</p>
-                    <a href="{{ url('kelas') }}" class="stretched-link"></a>
+            @forelse ($kelas as $list)
+                <div class="col-md-4">
+                    <div class="card-kelas">
+                        <img src="{{ asset('assets/image/' . $list->gambar) }}" alt="banner kelas">
+                        <h1 class="card-title-kelas">{{ $list->nama_kelas }}</h1>
+                        <p class="card-desc-kelas">{{ $list->deskripsi }}</p>
+                        {{-- <a href="" class="stretched-link"></a> --}}
+                        <a href="{{ route('kelas.show', $list->id) }}" class="stretched-link"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-kelas">
-                    <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                    <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                    <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer yang digunakan
-                        pada
-                        bagian back-end...</p>
-                    <a href="{{ url('kelas') }}" class="stretched-link"></a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-kelas">
-                    <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                    <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                    <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer yang digunakan
-                        pada
-                        bagian back-end...</p>
-                    <a href="{{ url('kelas') }}" class="stretched-link"></a>
-                </div>
-            </div>
+            @empty
+                <h1>tidak ada kelas</h1>
+            @endforelse
         </div>
         <div class="text-center mt-3">
-            <a href="{{ url('kelas') }}" class="link-info btn-rounded btn fw-bold">lihat selengkapnya</a>
+            <a href="{{ url('list_kelas') }}" class="link-info btn-rounded btn fw-bold">lihat selengkapnya</a>
         </div>
     </div>
     {{-- end section 3 --}}

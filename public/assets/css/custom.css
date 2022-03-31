@@ -2,7 +2,80 @@
  *
  * You can write your CSS code here, DO NOT touch the default JavaScript file
  * because it will make it harder for you to update.
- * 
+ *
  */
 
 /*# sourceMappingURL=custom.css.map */
+.stretched-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.card-kelas {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 13px 2px;
+    position: relative;
+}
+.card-kelas img {
+    width: 100%;
+    border-radius: 10px;
+}
+.card-kelas .card-title-kelas {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #111342;
+}
+
+.card-kelas .card-desc-kelas {
+    color: #8F8F8F;
+    font-size: 14px;
+}
+
+
+.videos-content {
+    width: 100%;
+    height:500px;
+    border-radius: 10px;
+    border:none;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.header-content {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+.description-content {
+    color: #000;
+    font-size: 15px;
+}
+.image-content {
+    margin: 20px auto;
+    display: block;
+}
+
+.btn-next {
+    background-color: #111342;
+    padding: 10px 40px;
+    color: #f9fbf2;
+    font-weight: bold;
+    border-radius: 30px;
+    border: none;
+}
+
+.btn-prev {
+    background-color: #c9c9c9;
+    padding: 10px 40px;
+    font-weight: bold;
+    color: #111342;
+    border-radius: 30px;
+    border: none;
+}

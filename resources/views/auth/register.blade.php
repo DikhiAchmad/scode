@@ -1,5 +1,7 @@
 @extends('users.layout.index')
 
+@section('title', 'Scode | Register')
+
 @section('content')
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -29,7 +31,6 @@
                     </div>
                     <div class="mb-4">
                         <select class="form-select form-control" aria-label="Jenis Kelamin" name="jenis_kelamin">
-                            <option selected>Jenis Kelamin</option>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
                         </select>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Ratu',
                 'telp' => '08224535234',
                 'jenis_kelamin' => 'P',
-                'email' => 'rad@gmail.com',
+                'email' => 'fed2@gmail.com',
                 'password' => Hash::make('BetterOne'),
                 'status' => 'pengajar',
                 'created_at' => now(),
@@ -42,12 +43,39 @@ class DatabaseSeeder extends Seeder
                 'name' => 'alifia',
                 'telp' => '08922535234',
                 'jenis_kelamin' => 'P',
-                'email' => 'rad2@gmail.com',
+                'email' => 'fed@gmail.com',
                 'password' => Hash::make('BetterOne'),
                 'status' => 'user',
                 'created_at' => now(),
                 'updated_at' => now()
             ]
+        ]);
+
+        Kelas::insert([
+            [
+                'gambar' => 'banner.jpg',
+                'nama_kelas' => 'Belajar PHP untuk Pemula',
+                'deskripsi' => 'Berkenalan dengan php, bahasa program yang sangat populer yang digunakan pada bagian back-end...',
+                'user_id' => '2',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'gambar' => 'banner.jpg',
+                'nama_kelas' => 'Belajar PHP untuk Menengah',
+                'deskripsi' => 'Berkenalan dengan php, bahasa program yang sangat populer yang digunakan pada bagian back-end...',
+                'user_id' => '2',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'gambar' => 'banner.jpg',
+                'nama_kelas' => 'Belajar PHP Advance',
+                'deskripsi' => 'Berkenalan dengan php, bahasa program yang sangat populer yang digunakan pada bagian back-end...',
+                'user_id' => '2',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
     }
 }

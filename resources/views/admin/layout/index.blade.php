@@ -43,10 +43,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ url('/') }}" class="dropdown-item has-icon">
-                                <i class="fas fa-rocket"></i> back to home
+                                <i class="fas fa-cog"></i> back to home
                             </a>
                             <div class="dropdown-divider"></div>
-
                             <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -70,8 +69,17 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="active"><a class="nav-link" href="{{ route('dashboard.index') }}"><i
-                                    class="fab fa-accusoft"></i> <span>Kelas</span></a></li>
+                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
+                                    class="fas fa-home"></i>
+                                <span>Dashboard</span></a></li>
+                        <li class="{{ Request::is('admin/kelola_pengajar') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('kelola_pengajar.index') }}"><i
+                                    class="fas fa-users"></i>
+                                <span>Kelola Pengajar</span></a></li>
+                        <li class="{{ Request::is('admin/kelola_users') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('kelola_users.index') }}"><i class="fas fa-user"></i> <span>Kelola
+                                    User</span></a></li>
                     </ul>
                 </aside>
             </div>
