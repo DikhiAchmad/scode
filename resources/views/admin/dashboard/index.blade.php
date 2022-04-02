@@ -22,7 +22,7 @@
                                         <h4>Total Admin</h4>
                                     </div>
                                     <div class="card-body">
-                                        10
+                                        {{ $countAdmin }}
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                         <h4>total member</h4>
                                     </div>
                                     <div class="card-body">
-                                        42
+                                        {{ $countMember }}
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                         <h4>total pengajar</h4>
                                     </div>
                                     <div class="card-body">
-                                        42
+                                        {{ $countPengajar }}
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                         <h4>total kelas</h4>
                                     </div>
                                     <div class="card-body">
-                                        42
+                                        {{ $countKelas }}
                                     </div>
                                 </div>
                             </div>
@@ -84,11 +84,16 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>12</td>
-                                    </tr>
+                                    @forelse ($kelasPengajar as $list)
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>{{ $list->name }}</td>
+                                            <td>{{ $list->count }}</td>
+                                        </tr>
+                                    @empty
+                                        <h1>data kosong</h1>
+                                    @endforelse
+
                                 </tbody>
                             </table>
                         </div>
@@ -101,12 +106,19 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <div class="media-body">
-                                        <div class="float-right">12m</div>
-                                        <div class="media-title">Ujang Maman</div>
-                                    </div>
-                                </li>
+                                @foreach ($users as $user)
+                                    <li class="media">
+                                        <div class="media-body">
+                                            @if (Cache::has('user-is-online-' . $user->id))
+                                                <div class="float-right">Online</div>
+                                            @else
+                                                <div class="float-right">
+                                                    {{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</div>
+                                            @endif
+                                            <div class="media-title">{{ $user->name }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                             <div class="text-center pt-1 pb-1">
                                 <a href="#" class="btn btn-primary btn-lg btn-round">

@@ -24,7 +24,8 @@ class User extends Authenticatable
         'jenis_kelamin',
         'password',
         'level',
-        'status'
+        'status',
+        'last_seen'
     ];
 
     /**
