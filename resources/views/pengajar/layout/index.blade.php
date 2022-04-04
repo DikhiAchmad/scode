@@ -69,20 +69,20 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
+                        <li class="{{ Request::is('pangajar/pengajar_dashboard') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('pengajar_dashboard.index') }}"><i
                                     class="fas fa-home"></i>
                                 <span>Dashboard</span></a></li>
-                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
+                        <li class="{{ Request::is('pangajar/kelola_kelas') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('kelola_kelas.index') }}"><i
                                     class="fas fa-home"></i>
                                 <span>kelola kelas</span></a></li>
-                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
+                        <li class="{{ Request::is('pangajar/kelola_materi') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('kelola_materi.index') }}"><i
                                     class="fas fa-home"></i>
                                 <span>kelola materi</span></a></li>
-                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
+                        <li class="{{ Request::is('pangajar/kelola_quiz') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('kelola_quiz.index') }}"><i
                                     class="fas fa-home"></i>
                                 <span>kelola quiz</span></a></li>
                     </ul>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardPengajarController extends Controller
+class KelolaKelasController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class DashboardPengajarController extends Controller
      */
     public function index()
     {
-        return view('pengajar.dashboard.index');
+        return view('pengajar.kelola_kelas.index');
     }
 
     /**
