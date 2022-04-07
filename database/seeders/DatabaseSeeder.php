@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\HavingClass;
 use App\Models\Kelas;
+use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -73,6 +75,29 @@ class DatabaseSeeder extends Seeder
                 'nama_kelas' => 'Belajar PHP Advance',
                 'deskripsi' => 'Berkenalan dengan php, bahasa program yang sangat populer yang digunakan pada bagian back-end...',
                 'user_id' => '2',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
+
+        Quiz::insert([
+            [
+                'pertanyaan' => 'sistem penyimpanan informasi data yang besar juga kompleks ?',
+                'pilihan_1' => 'server',
+                'pilihan_2' => 'hard disk',
+                'pilihan_3' => 'RAM',
+                'pilihan_4' => 'cloud',
+                'jawaban_benar' => 'server',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'pertanyaan' => 'yang manakah media penyimpanan digital ?',
+                'pilihan_1' => 'server',
+                'pilihan_2' => 'dompet',
+                'pilihan_3' => 'coin',
+                'pilihan_4' => 'sandal',
+                'jawaban_benar' => 'server',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

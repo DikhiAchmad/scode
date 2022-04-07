@@ -21,7 +21,6 @@
                                 <thead class="thead-dark text-center">
                                     <tr>
                                         <th scope="col">no</th>
-                                        <th scope="col">materi</th>
                                         <th scope="col">pertanyaan</th>
                                         <th scope="col">pilihan 1</th>
                                         <th scope="col">pilihan 2</th>
@@ -32,29 +31,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($data as $user) --}}
-                                    <tr>
-                                        <th class="text-center" scope="row">1</th>
-                                        <td class="text-center">belajar PHP</td>
-                                        <td class="text-center">sistem penyimpanan informasi data yang besar juga
-                                            kompleks ?</td>
-                                        <td class="text-center">server</td>
-                                        <td class="text-center">hard disk</td>
-                                        <td class="text-center">RAM</td>
-                                        <td class="text-center">cloud</td>
-                                        <td class="text-center">server</td>
-                                        <td class="d-flex align-items-center justify-content-center">
-                                            <a href="" class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
-                                            <form method="POST" action="">
-                                                <button type="submit"
-                                                    onclick="return confirm('Anda yakin ingin menghapus data ini?')"
-                                                    class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {{-- @empty --}}
-                                    {{-- <h1>data kosong</h1> --}}
-                                    {{-- @endforelse --}}
+                                    @forelse ($data as $quiz)
+                                        <tr>
+                                            <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                            <td class="text-center">{{ $quiz->pertanyaan }}</td>
+                                            <td class="text-center">{{ $quiz->pilihan_1 }}</td>
+                                            <td class="text-center">{{ $quiz->pilihan_2 }}</td>
+                                            <td class="text-center">{{ $quiz->pilihan_3 }}</td>
+                                            <td class="text-center">{{ $quiz->pilihan_4 }}</td>
+                                            <td class="text-center">{{ $quiz->jawaban_benar }}</td>
+                                            <td class="d-flex align-items-center justify-content-center">
+                                                <a href="" class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
+                                                <form method="POST" action="">
+                                                    <button type="submit"
+                                                        onclick="return confirm('Anda yakin ingin menghapus data ini?')"
+                                                        class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <h1>data kosong</h1>
+                                    @endforelse
 
                                 </tbody>
                             </table>

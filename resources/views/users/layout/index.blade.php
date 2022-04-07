@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     {{-- navbar --}}
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4">
         <div class="container">
@@ -71,7 +72,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                document.getElementById('logout-form').submit();">Logout</a>
+                                                                                    document.getElementById('logout-form').submit();">Logout</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KelolaQuizController extends Controller
 {
@@ -17,7 +19,13 @@ class KelolaQuizController extends Controller
      */
     public function index()
     {
-        return view('pengajar.kelola_quiz.index');
+        if (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'user') {
+            return redirect()->back();
+        }
+        $data = Quiz::all();
+        return view('pengajar.kelola_quiz.index', compact('data'));
     }
 
     /**

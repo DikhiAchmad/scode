@@ -13,7 +13,12 @@
             <div class="col-lg-6 description">
                 <h1 class="title">{{ $details->nama_kelas }}</h1>
                 <p class="desc-kelas">{{ $details->deskripsi }}</p>
-                <a href="" class="link-navy btn-square btn">Gabung Kelas</a>
+                <form action="{{ route('kelas.store') }}" method="GET">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" value="{{ $details->id }}" name="kelas_id">
+                    <button type="submit" class="link-navy btn-square btn">Gabung Kelas</button>
+                </form>
             </div>
         </div>
     </div>

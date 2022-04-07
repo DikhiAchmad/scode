@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomepageController::class, 'index']);
 Route::get('/list_kelas', [HomepageController::class, 'kelas']);
 Route::get('/kelas_detail/{id}', [HomepageController::class, 'show'])->name('kelas.show');
+Route::get('/tambah_kelas', [HomepageController::class, 'store'])->name('kelas.store')->middleware('auth');
 
 Auth::routes();
 

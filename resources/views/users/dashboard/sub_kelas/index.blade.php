@@ -12,39 +12,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card-kelas">
-                        <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                        <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                        <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer
-                            yang digunakan
-                            pada
-                            bagian back-end...</p>
-                        <a href="{{ url('kelas') }}" class="stretched-link"></a>
+                @foreach ($data as $list)
+                    <div class="col-md-4">
+                        <div class="card-kelas">
+                            <img src="{{ asset('assets/image/' . $list->gambar) }}" alt="banner kelas">
+                            <h1 class="card-title-kelas">{{ $list->nama_kelas }}</h1>
+                            <p class="card-desc-kelas">{{ $list->deskripsi }}</p>
+                            <a href="{{ route('kelas_saya.index') }}" class="stretched-link"></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-kelas">
-                        <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                        <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                        <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer
-                            yang digunakan
-                            pada
-                            bagian back-end...</p>
-                        <a href="{{ url('kelas') }}" class="stretched-link"></a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-kelas">
-                        <img src="{{ asset('assets/image/banner.jpg') }}" alt="banner kelas">
-                        <h1 class="card-title-kelas">Belajar PHP untuk Pemula</h1>
-                        <p class="card-desc-kelas">Berkenalan dengan php, bahasa program yang sangat populer
-                            yang digunakan
-                            pada
-                            bagian back-end...</p>
-                        <a href="{{ route('kelas_saya.index') }}" class="stretched-link"></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
     </div>
