@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class HomepageController extends Controller
 {
@@ -35,11 +36,24 @@ class HomepageController extends Controller
         } elseif (Auth::user()->status == 'pengajar') {
             return redirect()->back();
         }
-        HavingClass::create([
-            'user_id' => Auth::user()->id,
-            'kelas_id' => $request->input('kelas_id'),
-        ]);
-        Alert::success('Congrats', 'Successfully');
-        return redirect()->route('dashboard.index');
+        $validator = HavingClass::all()->where('user_id', '=', Auth::user()->id);
+        foreach ($validator as $valid) {
+            if ($valid->kelas_id == $request->input('kelas_id')) {
+                $bool = true;
+                break;
+            } else {
+                $bool = false;
+            }
+        }
+        if ($bool) {
+            Alert::error('Error', 'maaf anda sudah mempunyai kelas ini');
+            return redirect()->back();
+        } else {
+            HavingClass::create([
+                'user_id' => Auth::user()->id,
+                'kelas_id' => $request->input('kelas_id'),
+            ]);
+            return redirect()->route('dashboard.index')->with('success', 'berhasil menambahkan kelas');
+        }
     }
 }
