@@ -42,10 +42,6 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ url('/') }}" class="dropdown-item has-icon">
-                                <i class="fas fa-cog"></i> back to home
-                            </a>
-                            <div class="dropdown-divider"></div>
                             <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -67,29 +63,27 @@
                     <div class="sidebar-brand sidebar-brand-sm">
                         <a href="{{ url('/') }}">Sc</a>
                     </div>
+                    <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+                        <a href="{{ route('dashboard.index') }}"
+                            class="btn btn-primary btn-lg btn-block btn-icon-split">
+                            <i class="fas fa-rocket"></i> kembali ke Dashboard
+                        </a>
+                    </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="{{ Request::is('pangajar/pengajar_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('pengajar_dashboard.index') }}"><i
-                                    class="fas fa-home"></i>
-                                <span>Dashboard</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_kelas') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('kelola_kelas.index') }}"><i
-                                    class="fas fa-home"></i>
-                                <span>kelola kelas</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_materi') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('kelola_materi.index') }}"><i
-                                    class="fas fa-home"></i>
-                                <span>kelola materi</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_quiz') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('kelola_quiz.index') }}"><i
-                                    class="fas fa-home"></i>
-                                <span>kelola quiz</span></a></li>
+                        <li class="active"><a class="nav-link"
+                                href="{{ route('kelas_saya.index') }}"><i class="fab fa-accusoft"></i>
+                                <span>Kelas</span></a></li>
+                        <li class=""><a class="nav-link" href="{{ route('quiz.index') }}"><i
+                                    class="fab fa-accusoft"></i> <span>Quiz</span></a></li>
                     </ul>
                 </aside>
             </div>
 
-            @yield('content')
+            <!-- Main Content -->
+            <div class="main-content">
+                @yield('content')
+            </div>
 
             <footer class="main-footer">
                 <div class="footer-left">
@@ -128,13 +122,6 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/index.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.summernote').summernote();
-        });
-    </script>
 </body>
 
 </html>

@@ -35,7 +35,12 @@ class KelolaQuizController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+        return view('pengajar.kelola_quiz.create');
     }
 
     /**
@@ -46,7 +51,22 @@ class KelolaQuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $data = ([
+            'pertanyaan' => $request->input('pertanyaan'),
+            'pilihan_1' => $request->input('pilihan_1'),
+            'pilihan_2' => $request->input('pilihan_2'),
+            'pilihan_3' => $request->input('pilihan_3'),
+            'pilihan_4' => $request->input('pilihan_4'),
+            'jawaban_benar' => $request->input('jawaban_benar'),
+        ]);
+        Quiz::create($data);
+        return redirect()->route('kelola_quiz.index');
     }
 
     /**
@@ -68,7 +88,13 @@ class KelolaQuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+        $kelola = Quiz::findOrFail($id);
+        return view('pengajar.kelola_quiz.edit', compact('kelola'));
     }
 
     /**
@@ -80,7 +106,22 @@ class KelolaQuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $data = ([
+            'pertanyaan' => $request->input('pertanyaan'),
+            'pilihan_1' => $request->input('pilihan_1'),
+            'pilihan_2' => $request->input('pilihan_2'),
+            'pilihan_3' => $request->input('pilihan_3'),
+            'pilihan_4' => $request->input('pilihan_4'),
+            'jawaban_benar' => $request->input('jawaban_benar'),
+        ]);
+        Quiz::findOrFail($id)->update($data);
+        return redirect()->route('kelola_quiz.index');
     }
 
     /**
@@ -91,6 +132,15 @@ class KelolaQuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $del = Quiz::findOrFail($id);
+        $del->delete();
+        alert()->success('data telah dihapus', 'Selamat');
+        return redirect()->route('kelola_quiz.index');
     }
 }

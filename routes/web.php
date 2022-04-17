@@ -11,6 +11,7 @@ use App\Http\Controllers\KelolaMateriController;
 use App\Http\Controllers\KelolaPengajarController;
 use App\Http\Controllers\KelolaQuizController;
 use App\Http\Controllers\KelolaUserController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,7 @@ Route::group([
 ], function () {
     Route::resource('/dashboard', DashboardUserController::class);
     Route::resource('/kelas_saya', ContentKelasController::class);
+    Route::resource('/quiz', QuizController::class);
 });
 
 

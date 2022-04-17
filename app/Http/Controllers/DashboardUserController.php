@@ -28,7 +28,7 @@ class DashboardUserController extends Controller
 
         $data = HavingClass::join('users', 'users.id', '=', 'having_class.user_id')
             ->join('kelas', 'kelas.id', '=', 'having_class.kelas_id')
-            ->get(['having_class.user_id', 'kelas.gambar', 'kelas.nama_kelas', 'kelas.deskripsi']);
+            ->get(['kelas.id', 'having_class.user_id', 'kelas.gambar', 'kelas.nama_kelas', 'kelas.deskripsi']);
         return view('users.dashboard.sub_kelas.index', compact('data'));
     }
 

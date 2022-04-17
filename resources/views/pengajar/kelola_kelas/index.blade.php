@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <h4>kelola kelas</h4>
-                            <a href="{{ route('kelola_pengajar.create') }}" class="btn btn-success">create</a>
+                            <a href="{{ route('kelola_kelas.create') }}" class="btn btn-success">create</a>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -28,34 +28,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($data as $user) --}}
-                                    <tr>
-                                        <th class="text-center" scope="row">1</th>
-                                        <td class="py-3 text-center"><img src="{{ asset('assets/image/banner.jpg') }}"
-                                                class="rounded" width="100" alt=""></td>
-                                        <td class="text-center">belajar PHP</td>
-                                        <td style="width: 40%;">Berkenalan dengan php, bahasa program
-                                            yang sangat populer yang digunakan pada
-                                            bagian back-end website untuk mengatur
-                                            logika dan interaksi dengan database.</td>
-                                        <td class="d-flex align-items-center justify-content-center">
-                                            <a href="" class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
-                                            <form method="POST" action="">
-                                                <button type="submit"
-                                                    onclick="return confirm('Anda yakin ingin menghapus data ini?')"
-                                                    class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {{-- @empty --}}
-                                    {{-- <h1>data kosong</h1> --}}
-                                    {{-- @endforelse --}}
+                                    @forelse ($data as $kelola)
+                                        <tr>
+                                            <th class="text-center" scope="row">{{ ++$no }}</th>
+                                            <td class="py-3 text-center"><img
+                                                    src="{{ asset('assets/image/' . $kelola->gambar) }}"
+                                                    class="rounded" width="100" alt=""></td>
+                                            <td class="text-center">{{ $kelola->nama_kelas }}</td>
+                                            <td style="width: 40%;">{{ $kelola->deskripsi }}</td>
+                                            <td class="d-flex align-items-center justify-content-center">
+                                                <a href="{{ route('kelola_kelas.edit', $kelola->id) }}"
+                                                    class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
+                                                <form method="POST"
+                                                    action="{{ route('kelola_kelas.destroy', $kelola->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('delete') }}
+                                                    <button type="submit"
+                                                        onclick="return confirm('Anda yakin ingin menghapus data ini?')"
+                                                        class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <h1>data kosong</h1>
+                                    @endforelse
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer text-right">
-                            {{-- {{ $data->links('vendor.pagination.custom') }} --}}
+                            {{ $data->links('vendor.pagination.custom') }}
                         </div>
                     </div>
                 </div>

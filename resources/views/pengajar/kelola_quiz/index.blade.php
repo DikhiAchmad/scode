@@ -13,8 +13,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4>kelola kelas</h4>
-                            <a href="{{ route('kelola_pengajar.create') }}" class="btn btn-success">create</a>
+                            <h4>kelola Quiz</h4>
+                            <a href="{{ route('kelola_quiz.create') }}" class="btn btn-success">create</a>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -41,8 +41,12 @@
                                             <td class="text-center">{{ $quiz->pilihan_4 }}</td>
                                             <td class="text-center">{{ $quiz->jawaban_benar }}</td>
                                             <td class="d-flex align-items-center justify-content-center">
-                                                <a href="" class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
-                                                <form method="POST" action="">
+                                                <a href="{{ route('kelola_quiz.edit', $quiz->id) }}"
+                                                    class="btn btn-warning mr-2"><i class="fas fa-pen"></i></a>
+                                                <form method="POST"
+                                                    action="{{ route('kelola_quiz.destroy', $quiz->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('delete') }}
                                                     <button type="submit"
                                                         onclick="return confirm('Anda yakin ingin menghapus data ini?')"
                                                         class="btn btn-danger"><i class="fas fa-trash"></i></button>

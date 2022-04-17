@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DashboardPengajarController extends Controller
+class QuizController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,14 +13,7 @@ class DashboardPengajarController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->status == 'user') {
-            return redirect()->back();
-        } elseif (Auth::user()->status == 'admin') {
-            return redirect()->back();
-        }
-        $kelas = Kelas::where('user_id', '=', Auth::user()->id)->count();
-        $user = User::where('status', '=', 'user')->count();
-        return view('pengajar.dashboard.index', compact('kelas', 'user'));
+        return view('users.dashboard.content_kelas.quiz');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\HavingClass;
 use App\Models\Kelas;
+use App\Models\Materi;
 use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -98,6 +99,29 @@ class DatabaseSeeder extends Seeder
                 'pilihan_3' => 'coin',
                 'pilihan_4' => 'sandal',
                 'jawaban_benar' => 'server',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
+
+        Materi::insert([
+            [
+                'link_video' => 'https://www.youtube.com/embed/tgbNymZ7vqY',
+                'judul' => 'Belajar PHP Dasar Pengenalan Dan Kegunaan PHP',
+                'isi' => '<h1 class="header-content">Belajar PHP Dasar Pengenalan Dan Kegunaan PHP</h1>
+                <p class="description-content">Selamat datang di tutorial PHP dasar Belajar PHP Part 1 :
+                    Pengenalan PHP di malasngoding.com. anda yang sudah mulai memasuki tutorial dasar php
+                    ini di asumsikan untuk mempelajari tentang HTML dan CSS dasar terlebih dahulu sebelum
+                    melompat ke tutorial PHP. untuk tutorial HTML dan CSS dasar nya sendiri bisa anda ikuti
+                    di tutorial-tutorial malasngoding.com. Akan sangat lebih baik jika bahasa pemrograman di
+                    pelajari secara bertahap agar mengerti dari tiap dasar dan fungsi nya masing-masing. hal
+                    ini dapat mengakibatkan anda menemukan kesulitan dalam mempelajari pemrograman php jika
+                    HTML dan CSS dasar belum anda kuasai. sehingga dapat berujung kepada malas ngoding :).
+                    Pada artikel Belajar PHP Part 1 : Pengenalan PHP ini akan di jelaskan tentang
+                    pengenalan-pengenalan dari bahasa pemrograman PHP. seperti bagaimana bentuk penulisan
+                    syntax PHP, sifat dari PHP, sktruktur nya dan bagaimana cara menjalankan file PHP.
+                    berikut tentang pengenalan dasar bahasa pemrograman PHP.
+                </p>',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

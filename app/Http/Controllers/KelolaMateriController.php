@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Materi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KelolaMateriController extends Controller
 {
@@ -17,7 +19,18 @@ class KelolaMateriController extends Controller
      */
     public function index()
     {
-        return view('pengajar.kelola_materi.index');
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+        $batas = 10;
+        $data = Materi::paginate($batas);
+        $no = $batas * ($data->currentPage() - 1);
+        return view('pengajar.kelola_materi.index', [
+            'data' => $data,
+            'no' => $no
+        ]);
     }
 
     /**
@@ -27,7 +40,12 @@ class KelolaMateriController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+        return view('pengajar.kelola_materi.create');
     }
 
     /**
@@ -38,7 +56,19 @@ class KelolaMateriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $data = ([
+            'link_video' => $request->input('link_video'),
+            'judul' => $request->input('judul'),
+            'isi' => $request->input('isi'),
+        ]);
+        Materi::create($data);
+        return redirect()->route('kelola_materi.index');
     }
 
     /**
@@ -60,7 +90,13 @@ class KelolaMateriController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+        $kelola = Materi::findOrFail($id);
+        return view('pengajar.kelola_materi.edit', compact('kelola'));
     }
 
     /**
@@ -72,7 +108,19 @@ class KelolaMateriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $data = ([
+            'link_video' => $request->input('link_video'),
+            'judul' => $request->input('judul'),
+            'isi' => $request->input('isi'),
+        ]);
+        Materi::findOrFail($id)->update($data);
+        return redirect()->route('kelola_materi.index');
     }
 
     /**
@@ -83,6 +131,15 @@ class KelolaMateriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->status == 'user') {
+            return redirect()->back();
+        } elseif (Auth::user()->status == 'admin') {
+            return redirect()->back();
+        }
+
+        $del = Materi::findOrFail($id);
+        $del->delete();
+        alert()->success('data telah dihapus', 'Selamat');
+        return redirect()->route('kelola_materi.index');
     }
 }

@@ -37,14 +37,19 @@ class HomepageController extends Controller
             return redirect()->back();
         }
         $validator = HavingClass::all()->where('user_id', '=', Auth::user()->id);
-        foreach ($validator as $valid) {
-            if ($valid->kelas_id == $request->input('kelas_id')) {
-                $bool = true;
-                break;
-            } else {
-                $bool = false;
+        if ($validator->count() > 0) {
+            foreach ($validator as $valid) {
+                if ($valid->kelas_id == $request->input('kelas_id')) {
+                    $bool = true;
+                    break;
+                } else {
+                    $bool = false;
+                }
             }
+        } else {
+            $bool = false;
         }
+
         if ($bool) {
             Alert::error('Error', 'maaf anda sudah mempunyai kelas ini');
             return redirect()->back();
