@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Study;
+use Illuminate\Support\Facades\DB;
 
-class KelolaMateriController extends Controller
+class KelolaUrutanController extends Controller
 {
     public function __construct()
     {
@@ -19,18 +23,18 @@ class KelolaMateriController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->status == 'user') {
+        if (Auth::user()->status == 'admin') {
             return redirect()->back();
-        } elseif (Auth::user()->status == 'admin') {
+        } elseif (Auth::user()->status == 'user') {
             return redirect()->back();
         }
-        $batas = 10;
-        $data = Materi::paginate($batas);
-        $no = $batas * ($data->currentPage() - 1);
-        return view('pengajar.kelola_materi.index', [
-            'data' => $data,
-            'no' => $no
-        ]);
+        $data = DB::table('study')
+            ->select(DB::raw('study.id,urutan, kelas.nama_kelas, materi.judul'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
+            ->get();
+        // dd($data);
+        return view('pengajar.kelola_urutan.index', compact('data'));
     }
 
     /**
@@ -45,7 +49,9 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-        return view('pengajar.kelola_materi.create');
+        $kelas = Kelas::all();
+        $materi = Materi::all();
+        return view('pengajar.kelola_urutan.create', compact('kelas', 'materi'));
     }
 
     /**
@@ -62,32 +68,13 @@ class KelolaMateriController extends Controller
             return redirect()->back();
         }
 
-        $content = $request->input('isi');
-        $dom = new \DomDocument();
-        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $imageFile = $dom->getElementsByTagName('img');
-
-        foreach ($imageFile as $item => $image) {
-            $data = $image->getAttribute('src');
-            list($type, $data) = explode(';', $data);
-            list(, $data)      = explode(',', $data);
-            $imgeData = base64_decode($data);
-            $image_name = "/assets/image/" . time() . $item . '.png';
-            $path = public_path() . $image_name;
-            file_put_contents($path, $imgeData);
-
-            $image->removeAttribute('src');
-            $image->setAttribute('src', $image_name);
-        }
-
-        $content = $dom->saveHTML();
-
-        Materi::create([
-            'link_video' => $request->input('link_video'),
-            'judul' => $request->input('judul'),
-            'isi' => $content,
+        $data = ([
+            'urutan' => $request->input('urutan'),
+            'kelas_id' => $request->input('kelas_id'),
+            'materi_id' => $request->input('materi_id'),
         ]);
-        return redirect()->route('kelola_materi.index');
+        Study::create($data);
+        return redirect()->route('kelola_urutan.index');
     }
 
     /**
@@ -114,8 +101,10 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-        $kelola = Materi::findOrFail($id);
-        return view('pengajar.kelola_materi.edit', compact('kelola'));
+        $kelola = Study::findOrFail($id);
+        $kelas = Kelas::all();
+        $materi = Materi::all();
+        return view('pengajar.kelola_urutan.edit', compact('kelola', 'kelas', 'materi'));
     }
 
     /**
@@ -134,12 +123,12 @@ class KelolaMateriController extends Controller
         }
 
         $data = ([
-            'link_video' => $request->input('link_video'),
-            'judul' => $request->input('judul'),
-            'isi' => $request->input('isi'),
+            'urutan' => $request->input('urutan'),
+            'kelas_id' => $request->input('kelas_id'),
+            'materi_id' => $request->input('materi_id'),
         ]);
-        Materi::findOrFail($id)->update($data);
-        return redirect()->route('kelola_materi.index');
+        Study::findOrFail($id)->update($data);
+        return redirect()->route('kelola_urutan.index');
     }
 
     /**
@@ -156,9 +145,9 @@ class KelolaMateriController extends Controller
             return redirect()->back();
         }
 
-        $del = Materi::findOrFail($id);
+        $del = Study::findOrFail($id);
         $del->delete();
         alert()->success('data telah dihapus', 'Selamat');
-        return redirect()->route('kelola_materi.index');
+        return redirect()->route('kelola_urutan.index');
     }
 }

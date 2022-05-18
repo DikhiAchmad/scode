@@ -18,7 +18,7 @@
                             <img src="{{ asset('assets/image/' . $list->gambar) }}" alt="banner kelas">
                             <h1 class="card-title-kelas">{{ $list->nama_kelas }}</h1>
                             <p class="card-desc-kelas">{{ $list->deskripsi }}</p>
-                            <a href="{{ route('kelas_saya.show', $list->id) }}" class="stretched-link"></a>
+                            <a href="{{ route('content', [$list->id, 1]) }}" class="stretched-link"></a>
                         </div>
                     </div>
                 @endforeach

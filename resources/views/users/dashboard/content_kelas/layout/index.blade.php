@@ -26,6 +26,7 @@
 </head>
 
 <body>
+
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
@@ -71,11 +72,21 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="active"><a class="nav-link"
-                                href="{{ route('kelas_saya.index') }}"><i class="fab fa-accusoft"></i>
-                                <span>Kelas</span></a></li>
-                        <li class=""><a class="nav-link" href="{{ route('quiz.index') }}"><i
-                                    class="fab fa-accusoft"></i> <span>Quiz</span></a></li>
+                        @foreach ($navbar as $nav)
+                            @foreach ($data as $item)
+                                <li class="@if ('users/content/' . $nav->kelas_id . '/' . $nav->materi_id == 'users/content/' . $item->kelas_id . '/' . $item->materi_id) active @endif">
+                                    <a class="nav-link"
+                                        href="{{ route('content', [$nav->kelas_id, $nav->materi_id]) }}"><i
+                                            class="fab fa-accusoft"></i>
+                                        <span style="overflow: hidden; max-width: 100px;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 1;
+                                    -webkit-box-orient: vertical;">{{ $nav->judul }}</span></a>
+                                </li>
+                            @endforeach
+                        @endforeach
+                        {{-- <li class=""><a class="nav-link" href=""><i class="fab fa-accusoft"></i>
+                                <span>Quiz</span></a></li> --}}
                     </ul>
                 </aside>
             </div>

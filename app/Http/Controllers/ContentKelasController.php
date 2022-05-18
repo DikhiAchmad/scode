@@ -63,18 +63,20 @@ class ContentKelasController extends Controller
         } elseif (Auth::user()->status == 'pengajar') {
             return redirect()->back();
         }
-        $data = Study::where('kelas_id', '=', $id)->orderBy('urutan', 'ASC')->get();
-
-        // $data = Study::join('kelas', 'kelas.id', '=', 'study.kelas_id')
-        //     ->join('materi', 'materi.id', '=', 'study.materi_id')
-        //     ->join('quiz', 'quiz.id', '=', 'study.quiz_id')
-        //     ->where('kelas_id', '=', $id)
-        //     ->get([
-        //         'kelas.id', 'kelas.gambar', 'kelas.nama_kelas', 'kelas.deskripsi', 'materi.id',
-        //         'materi.link_video', 'materi.judul', 'materi.isi', 'quiz.pertanyaan', 'quiz.pilihan_1',
-        //         'quiz.pilihan_2', 'quiz.pilihan_3', 'quiz.pilihan_4', 'jawaban_benar'
-        //     ]);
-        // dd($data);
+        $navbar = DB::table('study')
+            ->select(DB::raw('study.id,urutan, kelas.nama_kelas, materi.judul'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
+            ->where('urutan', '=', $id)
+            ->orderBy('urutan', 'ASC')
+            ->get();
+        $data = DB::table('study')
+            ->select(DB::raw('study.id,urutan, kelas.nama_kelas, materi.judul'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
+            ->where('urutan', '=', $id)
+            ->orderBy('urutan', 'ASC')
+            ->get();
         return view('users.dashboard.content_kelas.index', compact('data'));
     }
 

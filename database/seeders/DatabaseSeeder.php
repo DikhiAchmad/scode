@@ -6,6 +6,7 @@ use App\Models\HavingClass;
 use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Quiz;
+use App\Models\Study;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -125,6 +126,12 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+        ]);
+
+        Study::insert([
+            'urutan' => 1,
+            'kelas_id' => 1,
+            'materi_id' => 1,
         ]);
     }
 }

@@ -69,22 +69,26 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="{{ Request::is('pangajar/pengajar_dashboard') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('pengajar/pengajar_dashboard') ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ route('pengajar_dashboard.index') }}"><i
                                     class="fas fa-home"></i>
                                 <span>Dashboard</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_kelas') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('pengajar/kelola_kelas') ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ route('kelola_kelas.index') }}"><i
-                                    class="fas fa-home"></i>
+                                    class="fab fa-accusoft"></i>
                                 <span>kelola kelas</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_materi') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('pengajar/kelola_materi') ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ route('kelola_materi.index') }}"><i
-                                    class="fas fa-home"></i>
+                                    class="fab fa-accusoft"></i>
                                 <span>kelola materi</span></a></li>
-                        <li class="{{ Request::is('pangajar/kelola_quiz') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('pengajar/kelola_quiz') ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ route('kelola_quiz.index') }}"><i
-                                    class="fas fa-home"></i>
+                                    class="fab fa-accusoft"></i>
                                 <span>kelola quiz</span></a></li>
+                        <li class="{{ Request::is('pengajar/kelola_urutan') ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ route('kelola_urutan.index') }}"><i
+                                    class="fab fa-accusoft"></i>
+                                <span>kelola urutan</span></a></li>
                     </ul>
                 </aside>
             </div>

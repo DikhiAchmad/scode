@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContentKelasController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardPengajarController;
 use App\Http\Controllers\DashboardUserController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\KelolaKelasController;
 use App\Http\Controllers\KelolaMateriController;
 use App\Http\Controllers\KelolaPengajarController;
 use App\Http\Controllers\KelolaQuizController;
+use App\Http\Controllers\KelolaUrutan;
+use App\Http\Controllers\KelolaUrutanController;
 use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +56,7 @@ Route::group([
     Route::resource('/kelola_kelas', KelolaKelasController::class);
     Route::resource('/kelola_materi', KelolaMateriController::class);
     Route::resource('/kelola_quiz', KelolaQuizController::class);
+    Route::resource('/kelola_urutan', KelolaUrutanController::class);
 });
 
 Route::group([
@@ -60,7 +64,8 @@ Route::group([
     'middleware' => 'auth'
 ], function () {
     Route::resource('/dashboard', DashboardUserController::class);
-    Route::resource('/kelas_saya', ContentKelasController::class);
+    Route::resource('/kelas_saya', ContentController::class);
+    Route::get('/content/{kelas}/{materi}', [ContentController::class, 'index'])->name('content');
     Route::resource('/quiz', QuizController::class);
 });
 
