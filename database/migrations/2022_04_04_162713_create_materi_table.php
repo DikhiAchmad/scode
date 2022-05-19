@@ -14,7 +14,11 @@ class CreateMateriTable extends Migration
     public function up()
     {
         Schema::create('materi', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
+            $table->integer('kelas_id')->unsigned();
+            $table->foreign('kelas_id')->references('id')->on('kelas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('link_video', 50);
             $table->string('judul', 50);
             $table->text('isi');

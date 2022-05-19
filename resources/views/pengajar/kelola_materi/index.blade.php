@@ -21,8 +21,9 @@
                                 <thead class="thead-dark text-center">
                                     <tr>
                                         <th scope="col">no</th>
+                                        <th scope="col">nama kelas</th>
                                         <th scope="col">link video</th>
-                                        <th scope="col">judul kelas</th>
+                                        <th scope="col">judul materi</th>
                                         <th scope="col">isi</th>
                                         <th scope="col" class="text-center">action</th>
                                     </tr>
@@ -30,7 +31,8 @@
                                 <tbody>
                                     @forelse ($data as $materi)
                                         <tr>
-                                            <th class="text-center" scope="row">{{ ++$no }}</th>
+                                            <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                            <th class="text-center">{{ $materi->nama_kelas }}</th>
                                             <td class="text-center"><iframe style="width: 200px; height: 100px;"
                                                     class="videos-content" src="{{ $materi->link_video }}">
                                                 </iframe></td>
@@ -38,9 +40,9 @@
                                             <td style="width: 30%;">
                                                 <p
                                                     style="overflow: hidden; max-width: 100px;
-                                                                                                                                    display: -webkit-box;
-                                                                                                                                    -webkit-line-clamp: 1;
-                                                                                                                                    -webkit-box-orient: vertical;">
+                                                                                                                                                                display: -webkit-box;
+                                                                                                                                                                -webkit-line-clamp: 1;
+                                                                                                                                                                -webkit-box-orient: vertical;">
                                                     {{ $materi->isi }}</p>
                                             </td>
                                             <td class="d-flex align-items-center justify-content-center">
@@ -62,9 +64,6 @@
 
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer text-right">
-                            {{ $data->links('vendor.pagination.custom') }}
                         </div>
                     </div>
                 </div>

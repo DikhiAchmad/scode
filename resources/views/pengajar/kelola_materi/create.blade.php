@@ -22,6 +22,15 @@
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
+                                        <label>kelas</label>
+                                        <select class="custom-select" name="kelas_id">
+                                            <option value="" selected>pilih kelas</option>
+                                            @foreach ($data as $datas)
+                                                <option value="{{ $datas->id }}">{{ $datas->nama_kelas }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>link video</label>
                                         <input type="text" class="form-control @error('link_video') is-invalid @enderror"
                                             placeholder="masukkan link video" name="link_video">

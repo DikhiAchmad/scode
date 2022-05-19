@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Materi;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KelolaQuizController extends Controller
 {
@@ -24,7 +26,10 @@ class KelolaQuizController extends Controller
         } elseif (Auth::user()->status == 'user') {
             return redirect()->back();
         }
-        $data = Quiz::all();
+        $data = DB::table('quiz')
+            ->select(DB::raw('quiz.*, materi.judul'))
+            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
+            ->get();
         return view('pengajar.kelola_quiz.index', compact('data'));
     }
 
@@ -40,7 +45,8 @@ class KelolaQuizController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-        return view('pengajar.kelola_quiz.create');
+        $materi = Materi::all();
+        return view('pengajar.kelola_quiz.create', compact('materi'));
     }
 
     /**
@@ -58,6 +64,7 @@ class KelolaQuizController extends Controller
         }
 
         $data = ([
+            'materi_id' => $request->input('materi_id'),
             'pertanyaan' => $request->input('pertanyaan'),
             'pilihan_1' => $request->input('pilihan_1'),
             'pilihan_2' => $request->input('pilihan_2'),
@@ -93,8 +100,9 @@ class KelolaQuizController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
+        $materi = Materi::all();
         $kelola = Quiz::findOrFail($id);
-        return view('pengajar.kelola_quiz.edit', compact('kelola'));
+        return view('pengajar.kelola_quiz.edit', compact('kelola', 'materi'));
     }
 
     /**
@@ -113,6 +121,7 @@ class KelolaQuizController extends Controller
         }
 
         $data = ([
+            'materi_id' => $request->input('materi_id'),
             'pertanyaan' => $request->input('pertanyaan'),
             'pilihan_1' => $request->input('pilihan_1'),
             'pilihan_2' => $request->input('pilihan_2'),

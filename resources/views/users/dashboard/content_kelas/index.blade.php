@@ -24,8 +24,52 @@
                             </div>
                         </div>
                     </div>
+
                 @empty
                     <h1>tidak ada</h1>
+                @endforelse
+                @forelse ($quiz as $q)
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="header-content">{{$q->pertanyaan}}</h1>
+                            <form action="" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban" id="exampleRadios1"
+                                            checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{$q->pilihan_1}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban" id="exampleRadios2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            {{$q->pilihan_2}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban" id="exampleRadios3">
+                                        <label class="form-check-label" for="exampleRadios3">
+                                            {{$q->pilihan_3}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban" id="exampleRadios4">
+                                        <label class="form-check-label" for="exampleRadios4">
+                                            {{$q->pilihan_4}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @empty
+
                 @endforelse
 
                 {{-- <div class="col-md-12 d-flex justify-content-between"> --}}

@@ -74,9 +74,9 @@
                         <li class="menu-header">&nbsp;</li>
                         @foreach ($navbar as $nav)
                             @foreach ($data as $item)
-                                <li class="@if ('users/content/' . $nav->kelas_id . '/' . $nav->materi_id == 'users/content/' . $item->kelas_id . '/' . $item->materi_id) active @endif">
+                                <li class="@if ('users/content/' . $nav->kelas_id . '/' . $nav->id == 'users/content/' . $item->kelas_id . '/' . $item->id) active @endif">
                                     <a class="nav-link"
-                                        href="{{ route('content', [$nav->kelas_id, $nav->materi_id]) }}"><i
+                                        href="{{ route('content', [$nav->kelas_id, $nav->id]) }}"><i
                                             class="fab fa-accusoft"></i>
                                         <span style="overflow: hidden; max-width: 100px;
                                     display: -webkit-box;

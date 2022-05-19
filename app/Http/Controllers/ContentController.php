@@ -15,22 +15,21 @@ class ContentController extends Controller
         } elseif (Auth::user()->status == 'pengajar') {
             return redirect()->back();
         }
-        $navbar = DB::table('study')
-            ->select(DB::raw('kelas_id,materi_id ,materi.judul'))
+        $navbar = DB::table('materi')
+            ->select(DB::raw('kelas_id,materi.*'))
             ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
-            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
             ->where('kelas_id', '=', $kelas)
-            ->orderBy('urutan', 'ASC')
             ->get();
-        $data = DB::table('study')
-            ->select(DB::raw('study.id,urutan,study.kelas_id, study.materi_id,kelas.*, materi.*'))
+        $data = DB::table('materi')
+            ->select(DB::raw('kelas_id,materi.*'))
             ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
-            ->leftJoin('materi', 'materi.id', '=', 'materi_id')
-            ->where('kelas_id', '=', $kelas)
+            ->where('materi.id', '=', $materi)
+            ->get();
+        $quiz = DB::table('quiz')
+            ->select(DB::raw('quiz.*'))
+            ->leftJoin('materi', 'materi.id', '=', 'quiz.materi_id')
             ->where('materi_id', '=', $materi)
-            ->orderBy('urutan', 'ASC')
             ->get();
-        // dd($data);
-        return view('users.dashboard.content_kelas.index', compact('data', 'navbar'));
+        return view('users.dashboard.content_kelas.index', compact('data', 'navbar', 'quiz'));
     }
 }

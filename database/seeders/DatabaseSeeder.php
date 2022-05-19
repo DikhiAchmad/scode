@@ -81,32 +81,9 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now()
             ],
         ]);
-
-        Quiz::insert([
-            [
-                'pertanyaan' => 'sistem penyimpanan informasi data yang besar juga kompleks ?',
-                'pilihan_1' => 'server',
-                'pilihan_2' => 'hard disk',
-                'pilihan_3' => 'RAM',
-                'pilihan_4' => 'cloud',
-                'jawaban_benar' => 'server',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'pertanyaan' => 'yang manakah media penyimpanan digital ?',
-                'pilihan_1' => 'server',
-                'pilihan_2' => 'dompet',
-                'pilihan_3' => 'coin',
-                'pilihan_4' => 'sandal',
-                'jawaban_benar' => 'server',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-        ]);
-
         Materi::insert([
             [
+                'kelas_id' => '1',
                 'link_video' => 'https://www.youtube.com/embed/tgbNymZ7vqY',
                 'judul' => 'Belajar PHP Dasar Pengenalan Dan Kegunaan PHP',
                 'isi' => '<h1 class="header-content">Belajar PHP Dasar Pengenalan Dan Kegunaan PHP</h1>
@@ -127,11 +104,37 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now()
             ],
         ]);
-
-        Study::insert([
-            'urutan' => 1,
-            'kelas_id' => 1,
-            'materi_id' => 1,
+        Quiz::insert([
+            [
+                'materi_id' => '1',
+                'pertanyaan' => 'sistem penyimpanan informasi data yang besar juga kompleks ?',
+                'pilihan_1' => 'server',
+                'pilihan_2' => 'hard disk',
+                'pilihan_3' => 'RAM',
+                'pilihan_4' => 'cloud',
+                'jawaban_benar' => 'server',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'materi_id' => '1',
+                'pertanyaan' => 'yang manakah media penyimpanan digital ?',
+                'pilihan_1' => 'server',
+                'pilihan_2' => 'dompet',
+                'pilihan_3' => 'coin',
+                'pilihan_4' => 'sandal',
+                'jawaban_benar' => 'server',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
+
+
+
+        // Study::insert([
+        //     'urutan' => 1,
+        //     'kelas_id' => 1,
+        //     'materi_id' => 1,
+        // ]);
     }
 }

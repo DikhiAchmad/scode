@@ -20,6 +20,15 @@
                                     @csrf
                                     @method('PATCH')
                                     <div class="form-group">
+                                        <label>materi</label>
+                                        <select class="custom-select" name="materi_id">
+                                            <option value="" selected>pilih materi</option>
+                                            @foreach ($materi as $datas)
+                                                <option value="{{ $datas->id }}">{{ $datas->judul }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>pertanyaan</label>
                                         <input type="text" class="form-control @error('pertanyaan') is-invalid @enderror"
                                             placeholder="masukkan pertanyaan" name="pertanyaan"

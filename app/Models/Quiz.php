@@ -10,5 +10,5 @@ class Quiz extends Model
     use HasFactory;
     protected $table = 'quiz';
 
-    protected $fillable = ['pertanyaan', 'pilihan_1', 'pilihan_2', 'pilihan_3', 'pilihan_4', 'jawaban_benar'];
+    protected $fillable = ['materi_id', 'pertanyaan', 'pilihan_1', 'pilihan_2', 'pilihan_3', 'pilihan_4', 'jawaban_benar'];
 }

@@ -21,6 +21,16 @@
                                     @csrf
                                     @method('PATCH')
                                     <div class="form-group">
+                                        <label>kelas</label>
+                                        <select class="custom-select" name="kelas_id">
+                                            <option value="">pilih kelas</option>
+                                            @foreach ($data as $datas)
+                                                <option @if ($kelola->kelas_id == $datas->id) selected @endif
+                                                    value="{{ $datas->id }}">{{ $datas->nama_kelas }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>link video</label>
                                         <input type="text" class="form-control @error('link_video') is-invalid @enderror"
                                             placeholder="masukkan link video" name="link_video"
@@ -51,7 +61,8 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <a href="{{ route('kelola_materi.index') }}" class="btn btn-info mr-3">kembali</a>
+                                        <a href="{{ route('kelola_materi.index') }}"
+                                            class="btn btn-info mr-3">kembali</a>
                                         <button type="submit" class="btn btn-success">edit data</button>
                                     </div>
                                 </form>

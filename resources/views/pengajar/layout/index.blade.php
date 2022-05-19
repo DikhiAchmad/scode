@@ -85,10 +85,6 @@
                                 class="nav-link" href="{{ route('kelola_quiz.index') }}"><i
                                     class="fab fa-accusoft"></i>
                                 <span>kelola quiz</span></a></li>
-                        <li class="{{ Request::is('pengajar/kelola_urutan') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('kelola_urutan.index') }}"><i
-                                    class="fab fa-accusoft"></i>
-                                <span>kelola urutan</span></a></li>
                     </ul>
                 </aside>
             </div>

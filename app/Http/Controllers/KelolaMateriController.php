@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KelolaMateriController extends Controller
 {
@@ -24,12 +26,12 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-        $batas = 10;
-        $data = Materi::paginate($batas);
-        $no = $batas * ($data->currentPage() - 1);
+        $data = DB::table('materi')
+            ->select(DB::raw('materi.*, kelas.*'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->get();
         return view('pengajar.kelola_materi.index', [
-            'data' => $data,
-            'no' => $no
+            'data' => $data
         ]);
     }
 
@@ -45,7 +47,8 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-        return view('pengajar.kelola_materi.create');
+        $data = Kelas::all();
+        return view('pengajar.kelola_materi.create', compact('data'));
     }
 
     /**
@@ -83,6 +86,7 @@ class KelolaMateriController extends Controller
         $content = $dom->saveHTML();
 
         Materi::create([
+            'kelas_id' => $request->input('kelas_id'),
             'link_video' => $request->input('link_video'),
             'judul' => $request->input('judul'),
             'isi' => $content,
@@ -114,8 +118,9 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
+        $data = Kelas::all();
         $kelola = Materi::findOrFail($id);
-        return view('pengajar.kelola_materi.edit', compact('kelola'));
+        return view('pengajar.kelola_materi.edit', compact('data', 'kelola'));
     }
 
     /**
@@ -132,8 +137,8 @@ class KelolaMateriController extends Controller
         } elseif (Auth::user()->status == 'admin') {
             return redirect()->back();
         }
-
         $data = ([
+            'kelas_id' => $request->input('kelas_id'),
             'link_video' => $request->input('link_video'),
             'judul' => $request->input('judul'),
             'isi' => $request->input('isi'),

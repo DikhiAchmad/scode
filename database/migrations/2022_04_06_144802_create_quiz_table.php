@@ -15,6 +15,10 @@ class CreateQuizTable extends Migration
     {
         Schema::create('quiz', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('materi_id');
+            $table->foreign('materi_id')->references('id')->on('materi')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('pertanyaan', 100);
             $table->string('pilihan_1', 50);
             $table->string('pilihan_2', 50);

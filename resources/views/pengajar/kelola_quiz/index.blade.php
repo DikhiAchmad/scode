@@ -16,11 +16,12 @@
                             <h4>kelola Quiz</h4>
                             <a href="{{ route('kelola_quiz.create') }}" class="btn btn-success">create</a>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table">
                                 <thead class="thead-dark text-center">
                                     <tr>
                                         <th scope="col">no</th>
+                                        <th scope="col">judul materi</th>
                                         <th scope="col">pertanyaan</th>
                                         <th scope="col">pilihan 1</th>
                                         <th scope="col">pilihan 2</th>
@@ -34,6 +35,10 @@
                                     @forelse ($data as $quiz)
                                         <tr>
                                             <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                            <td class="text-center" style="overflow: hidden; max-width: 100px;
+                                                                display: -webkit-box;
+                                                                -webkit-line-clamp: 1;
+                                                                -webkit-box-orient: vertical;">{{ $quiz->judul }}</td>
                                             <td class="text-center">{{ $quiz->pertanyaan }}</td>
                                             <td class="text-center">{{ $quiz->pilihan_1 }}</td>
                                             <td class="text-center">{{ $quiz->pilihan_2 }}</td>

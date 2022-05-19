@@ -13,10 +13,10 @@ class CreateStudyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('study_users', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Schema::create('study_users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->timestamps();
+        // });
     }
 
     /**
