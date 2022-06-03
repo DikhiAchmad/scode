@@ -72,3 +72,8 @@ Route::group([
 
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('/grade', function () {
+    return view('users.dashboard.content_kelas.grade');
+});
