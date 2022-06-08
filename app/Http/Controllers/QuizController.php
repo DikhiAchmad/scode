@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -11,9 +12,24 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($kelas, $materi)
     {
-        return view('users.dashboard.content_kelas.quiz');
+        $navbar = DB::table('materi')
+            ->select(DB::raw('kelas_id,materi.*'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->where('kelas_id', '=', $kelas)
+            ->get();
+        $data = DB::table('materi')
+            ->select(DB::raw('kelas_id,materi.*'))
+            ->leftJoin('kelas', 'kelas.id', '=', 'kelas_id')
+            ->where('materi.id', '=', $materi)
+            ->get();
+        $quiz = DB::table('quiz')
+            ->select(DB::raw('quiz.*'))
+            ->leftJoin('materi', 'materi.id', '=', 'quiz.materi_id')
+            ->where('materi_id', '=', $materi)
+            ->get();
+        return view('users.dashboard.content_kelas.quiziz', compact('data', 'navbar', 'quiz'));
     }
 
     /**

@@ -1,21 +1,22 @@
 <?php
 
-use App\Http\Controllers\ContentKelasController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KelolaUrutan;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ContentController;
-use App\Http\Controllers\DashboardAdminController;
-use App\Http\Controllers\DashboardPengajarController;
-use App\Http\Controllers\DashboardUserController;
 // use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\KelolaKelasController;
-use App\Http\Controllers\KelolaMateriController;
-use App\Http\Controllers\KelolaPengajarController;
 use App\Http\Controllers\KelolaQuizController;
-use App\Http\Controllers\KelolaUrutan;
-use App\Http\Controllers\KelolaUrutanController;
 use App\Http\Controllers\KelolaUserController;
-use App\Http\Controllers\QuizController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KelolaKelasController;
+use App\Http\Controllers\ContentKelasController;
+use App\Http\Controllers\KelolaMateriController;
+use App\Http\Controllers\KelolaUrutanController;
+use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\KelolaPengajarController;
+use App\Http\Controllers\DashboardPengajarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,8 @@ Route::group([
     Route::resource('/dashboard', DashboardUserController::class);
     Route::resource('/kelas_saya', ContentController::class);
     Route::get('/content/{kelas}/{materi}', [ContentController::class, 'index'])->name('content');
-    Route::resource('/quiz', QuizController::class);
+    Route::get('/quiz/{kelas}/{materi}', [QuizController::class, 'index'])->name('quiz');
+    // Route::resource('/quiz', QuizController::class);
 });
 
 

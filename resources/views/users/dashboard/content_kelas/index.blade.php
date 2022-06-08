@@ -21,6 +21,8 @@
                                 <iframe class="videos-content" src="{{ $item->link_video }}">
                                 </iframe>
                                 {!! $item->isi !!}
+                                <a href="{{ url('/users/quiz/{kelas}/{materi}') }}" class="btn btn-primary btn-lg">Mulai Kuis</a>
+
                             </div>
                         </div>
                     </div>
@@ -28,7 +30,8 @@
                 @empty
                     <h1>tidak ada</h1>
                 @endforelse
-                @forelse ($quiz as $q)
+
+                {{-- @forelse ($quiz as $q)
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -70,7 +73,7 @@
                 </div>
                 @empty
 
-                @endforelse
+                @endforelse --}}
 
                 {{-- <div class="col-md-12 d-flex justify-content-between"> --}}
                     {{-- @foreach ($data as $s)
