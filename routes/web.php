@@ -68,6 +68,7 @@ Route::group([
     Route::resource('/kelas_saya', ContentController::class);
     Route::get('/content/{kelas}/{materi}', [ContentController::class, 'index'])->name('content');
     Route::get('/quiz/{kelas}/{materi}', [QuizController::class, 'index'])->name('quiz');
+    Route::post('/quiz/{kelas}/{materi}', [QuizController::class, 'store'])->name('quiz.store');
     // Route::resource('/quiz', QuizController::class);
 });
 

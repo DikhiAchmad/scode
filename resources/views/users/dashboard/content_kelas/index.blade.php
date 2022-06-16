@@ -21,7 +21,7 @@
                                 <iframe class="videos-content" src="{{ $item->link_video }}">
                                 </iframe>
                                 {!! $item->isi !!}
-                                <a href="{{ url('/users/quiz/{kelas}/{materi}') }}" class="btn btn-primary btn-lg">Mulai Kuis</a>
+                                <a href="{{ url('/users/quiz/'. $item->kelas_id . '/' . $item->id) }}" class="btn btn-primary btn-lg">Mulai Kuis</a>
 
                             </div>
                         </div>

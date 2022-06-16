@@ -3,27 +3,78 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-                <h1>Belajar PHP Dasar Pengenalan Dan Kegunaan PHP</h1>
+                <h1>Quiz</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ url('/') }}">Home</a></div>
-                <div class="breadcrumb-item">Kelas</div>
-                <div class="breadcrumb-item">Quiz</div>
+                <div class="breadcrumb-item active">Home</div>
             </div>
         </div>
 
         <div class="section-body">
+            <form action="{{ route('quiz') }}" enctype="multipart/form-data">
             <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="header-content">Quiz</h1>
+                @forelse ($quiz as $q)
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="header-content">{{$q->pertanyaan}}</h1>
+                                <div class="form-group">
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban{{$q->id}}" id="exampleRadios1"
+                                            checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{$q->pilihan_1}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban{{$q->id}}" id="exampleRadios2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            {{$q->pilihan_2}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban{{$q->id}}" id="exampleRadios3">
+                                        <label class="form-check-label" for="exampleRadios3">
+                                            {{$q->pilihan_3}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="jawaban{{$q->id}}" id="exampleRadios4">
+                                        <label class="form-check-label" for="exampleRadios4">
+                                            {{$q->pilihan_4}}
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
+                    @empty
+                    <h1>null</h1>
+                    @endforelse
+                    <div class="col-md-12 text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">submit</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </form>
+    </div>
+                {{-- <div class="col-md-12 d-flex justify-content-between"> --}}
+                    {{-- @foreach ($data as $s)
+                        @if ()
 
+                        @endif
+                    @endforeach --}}
+                    {{-- <form action="">
+                        <button type="submit" class="btn-prev">prev</button>
+                    </form>
 
-                        <div class="col-md-12">
+                    <button type="submit" class="btn-next">next</button>
+                </div>
+                        {{-- <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h1 class="header-content">sistem penyimpanan informasi data yang besar juga kompleks ?</h1>
@@ -76,7 +127,7 @@
                                   <li class="page-item"><a class="page-link" href="#">End Quiz</a></li>
                                 </ul>
                               </nav>
-                        </div>
+                        </div> --}}
 
 
                 {{-- <div class="col-md-12 d-flex justify-content-between"> --}}
@@ -91,8 +142,5 @@
 
                     <button type="submit" class="btn-next">next</button>
                 </div> --}}
-            </div>
-        </div>
-
     </section>
 @endsection
