@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QuizJawaban;
-use App\Http\Requests\StoreQuizJawabanRequest;
-use App\Http\Requests\UpdateQuizJawabanRequest;
+use App\Models\Jawaban;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class QuizJawabanController extends Controller
+class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,12 @@ class QuizJawabanController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::table('jawaban')
+            ->select(DB::raw('quiz.pertanyaan, jawaban.validasi_jawaban'))
+            ->leftJoin('quiz', 'quiz.id', '=', 'jawaban.quiz_id')
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
+        return view('users.dashboard.content_kelas.grade', compact('data'));
     }
 
     /**
@@ -31,10 +37,10 @@ class QuizJawabanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreQuizJawabanRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuizJawabanRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +48,10 @@ class QuizJawabanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\QuizJawaban  $quizJawaban
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(QuizJawaban $quizJawaban)
+    public function show($id)
     {
         //
     }
@@ -53,10 +59,10 @@ class QuizJawabanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\QuizJawaban  $quizJawaban
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(QuizJawaban $quizJawaban)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +70,11 @@ class QuizJawabanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateQuizJawabanRequest  $request
-     * @param  \App\Models\QuizJawaban  $quizJawaban
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuizJawabanRequest $request, QuizJawaban $quizJawaban)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +82,10 @@ class QuizJawabanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\QuizJawaban  $quizJawaban
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuizJawaban $quizJawaban)
+    public function destroy($id)
     {
         //
     }

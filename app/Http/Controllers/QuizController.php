@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jawaban;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
@@ -29,7 +32,9 @@ class QuizController extends Controller
             ->leftJoin('materi', 'materi.id', '=', 'quiz.materi_id')
             ->where('materi_id', '=', $materi)
             ->get();
-        return view('users.dashboard.content_kelas.quiziz', compact('data', 'navbar', 'quiz'));
+        $data1 = $kelas;
+        $data2 = $kelas;
+        return view('users.dashboard.content_kelas.quiziz', compact('data', 'navbar', 'quiz', 'data1', 'data2'));
     }
 
     /**
@@ -48,9 +53,31 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($kelas, $materi, Request $request)
     {
-        //
+        $quiz = DB::table('quiz')
+            ->select(DB::raw('quiz.*'))
+            ->leftJoin('materi', 'materi.id', '=', 'quiz.materi_id')
+            ->where('materi_id', '=', $materi)
+            ->get();
+        for ($i = 0; $i < count($quiz); ++$i) {
+            if ($request->input('jawaban' . $i + 1) === $quiz[$i]->jawaban_benar) {
+                $data = ([
+                    'quiz_id' => $quiz[$i]->id,
+                    'user_id' => Auth::user()->id,
+                    'validasi_jawaban' => true,
+                ]);
+                Jawaban::create($data);
+            } else {
+                $data = ([
+                    'quiz_id' => $quiz[$i]->id,
+                    'user_id' => Auth::user()->id,
+                    'validasi_jawaban' => false,
+                ]);
+                Jawaban::create($data);
+            }
+        }
+        return redirect()->route('grade');
     }
 
     /**

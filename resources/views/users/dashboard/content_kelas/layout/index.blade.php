@@ -43,7 +43,8 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
+                                onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
@@ -75,10 +76,10 @@
                         @foreach ($navbar as $nav)
                             @foreach ($data as $item)
                                 <li class="@if ('users/content/' . $nav->kelas_id . '/' . $nav->id == 'users/content/' . $item->kelas_id . '/' . $item->id) active @endif">
-                                    <a class="nav-link"
-                                        href="{{ route('content', [$nav->kelas_id, $nav->id]) }}"><i
+                                    <a class="nav-link" href="{{ route('content', [$nav->kelas_id, $nav->id]) }}"><i
                                             class="fab fa-accusoft"></i>
-                                        <span style="overflow: hidden; max-width: 100px;
+                                        <span
+                                            style="overflow: hidden; max-width: 100px;
                                     display: -webkit-box;
                                     -webkit-line-clamp: 1;
                                     -webkit-box-orient: vertical;">{{ $nav->judul }}</span></a>
@@ -133,6 +134,8 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/index.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>

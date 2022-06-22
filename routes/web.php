@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KelolaPengajarController;
 use App\Http\Controllers\DashboardPengajarController;
+use App\Http\Controllers\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,13 +71,9 @@ Route::group([
     Route::get('/quiz/{kelas}/{materi}', [QuizController::class, 'index'])->name('quiz');
     Route::post('/quiz/{kelas}/{materi}', [QuizController::class, 'store'])->name('quiz.store');
     // Route::resource('/quiz', QuizController::class);
+    Route::get('/grade', [GradeController::class, 'index'])->name('grade');
 });
 
 
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
-Route::get('/grade', function () {
-    return view('users.dashboard.content_kelas.grade');
-});

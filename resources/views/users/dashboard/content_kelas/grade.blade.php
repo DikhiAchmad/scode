@@ -1,20 +1,20 @@
 @extends('users.layout.index')
 @section('content')
-    <div class="">
+    <div class="container">
         <h1 class="text-center" style="font-family: Lucida Sans" style="color: rgb(78, 71, 61)">Statistik Quiz</h1>
         <hr>
 
-        <h4 class="text-center">Total Petanyaan Quiz : 10/10</h4>
+        <h4 class="text-center">Total Petanyaan Quiz : {{ $data->count() }} / {{ $data->count() }}</h4>
 
-        <div id="content">
+        {{-- <div id="content">
             <h4 style="margin-left: 50px">Time Speed : 00.59.10</h4>
             <div class="card grafik" style="width:500px">
                 <canvas id="myChart"></canvas>
             </div>
-        </div>
+        </div> --}}
 
         <div id="content1">
-            <h4 style="text-align: right" >Nilai Total : 100%</h4>
+            <h4 style="text-align: right">Nilai Total : 100%</h4>
 
             <table class="table table-secondary table-bordered table-striped" style="margin-top: 20px">
                 <thead>
@@ -54,48 +54,50 @@
                     </tr>
                     <th scope="col" class="text-center">Total Nilai</th>
                     <th scope="col" class="text-center">100</th>
-                    </div>
-                </tbody>
-            </table>
         </div>
+        </tbody>
+        </table>
+    </div>
 
-        <div class="box">
-            <table class="table table-dark table-bordered table-striped justify-content-center" style="margin-top: 20px">
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-center">Level Name</th>
-                        <th scope="col" class="text-center">Anda Cocok Dengan Ilmu Informatika</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+    {{-- <div class="box">
+        <table class="table table-dark table-bordered table-striped justify-content-center" style="margin-top: 20px">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Level Name</th>
+                    <th scope="col" class="text-center">Anda Cocok Dengan Ilmu Informatika</th>
+                </tr>
+            </thead>
+        </table>
+    </div> --}}
 
-        <div class="box1">
-            <table class="table table-secondary table-bordered table-striped" style="margin-top: 20px">
-                <thead>
+    <div class="box1">
+        <table class="table table-secondary table-bordered table-striped" style="margin-top: 20px">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">No</th>
+                    <th scope="col" class="text-center">Pertanyaan</th>
+                    <th scope="col" class="text-center">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $jawaban)
                     <tr>
-                        <th scope="col" class="text-center">No</th>
-                        <th scope="col" class="text-center">Pertanyaan</th>
-                        <th scope="col" class="text-center">Jawaban</th>
-                        <th scope="col" class="text-center">Status</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $jawaban->pertanyaan }}</td>
+                        <td class="text-center">
+                            {{ $jawaban->validasi_jawaban ? 'benar' : 'salah' }}
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Apa itu java?</td>
-                        <td class="text-center">java</td>
-                        <td class="text-center">Benar</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Apa itu java?</td>
-                        <td class="text-center">java</td>
-                        <td class="text-center">Salah</td>
-                    </tr>
-                </tbody>
-            </table>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-12">
+
+                <a href="{{ route('dashboard.index') }}" class="btn btn-primary text-center"> kembali ke dashboard</a>
+            </div>
         </div>
+    </div>
 
 
     </div>
