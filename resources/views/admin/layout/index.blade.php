@@ -46,7 +46,8 @@
                                 <i class="fas fa-cog"></i> back to home
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
+                                onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
@@ -69,17 +70,27 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">&nbsp;</li>
-                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('admin_dashboard.index') }}"><i
-                                    class="fas fa-home"></i>
+                        <li class="{{ Request::is('admin/admin_dashboard') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('admin_dashboard.index') }}"><i class="fas fa-home"></i>
                                 <span>Dashboard</span></a></li>
-                        <li class="{{ Request::is('admin/kelola_pengajar') ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ route('kelola_pengajar.index') }}"><i
-                                    class="fas fa-users"></i>
+                        <li class="{{ Request::is('admin/kelola_pengajar') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('kelola_pengajar.index') }}"><i class="fas fa-users"></i>
                                 <span>Kelola Pengajar</span></a></li>
                         <li class="{{ Request::is('admin/kelola_users') ? 'active' : '' }}"><a class="nav-link"
                                 href="{{ route('kelola_users.index') }}"><i class="fas fa-user"></i> <span>Kelola
                                     User</span></a></li>
+                        <li class="{{ Request::is('admin/setting_quiz') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('setting_quiz.index') }}"><i class="fas fa-user"></i> <span>Kelola
+                                    Quiz</span></a></li>
+                        <li class="{{ Request::is('admin/setting_soal') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('setting_soal.index') }}"><i class="fas fa-user"></i> <span>Kelola
+                                    Soal</span></a></li>
+                        <li class="{{ Request::is('admin/setting_jawaban') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('setting_jawaban.index') }}"><i class="fas fa-user"></i> <span>Kelola
+                                    Jawaban</span></a></li>
+                        <li class="{{ Request::is('admin/detail_quiz') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('detail_quiz.index') }}"><i class="fas fa-user"></i> <span>Detail
+                                    Quiz</span></a></li>
                     </ul>
                 </aside>
             </div>

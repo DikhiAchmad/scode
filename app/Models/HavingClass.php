@@ -12,4 +12,14 @@ class HavingClass extends Model
     protected $table = 'having_class';
 
     protected $fillable = ['user_id', 'kelas_id'];
+
+    protected $guarded=['id'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
+    }
 }

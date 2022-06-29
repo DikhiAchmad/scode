@@ -33,7 +33,7 @@ class QuizController extends Controller
             ->where('materi_id', '=', $materi)
             ->get();
         $data1 = $kelas;
-        $data2 = $kelas;
+        $data2 = $materi;
         return view('users.dashboard.content_kelas.quiziz', compact('data', 'navbar', 'quiz', 'data1', 'data2'));
     }
 

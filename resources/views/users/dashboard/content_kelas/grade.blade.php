@@ -4,7 +4,7 @@
         <h1 class="text-center" style="font-family: Lucida Sans" style="color: rgb(78, 71, 61)">Statistik Quiz</h1>
         <hr>
 
-        <h4 class="text-center">Total Petanyaan Quiz : {{ $data->count() }} / {{ $data->count() }}</h4>
+        <h4 class="text-center">Total Pertanyaan Quiz : {{ $pertanyaan }}</h4>
 
         {{-- <div id="content">
             <h4 style="margin-left: 50px">Time Speed : 00.59.10</h4>
@@ -14,7 +14,7 @@
         </div> --}}
 
         <div id="content1">
-            <h4 style="text-align: right">Nilai Total : 100%</h4>
+            <h4 style="text-align: right">Nilai Total : {{ $data_quiz->nilai_total }}</h4>
 
             <table class="table table-secondary table-bordered table-striped" style="margin-top: 20px">
                 <thead>
@@ -26,34 +26,18 @@
                 <tbody>
                     <tr>
                         <td>Total Pertanyaan</td>
-                        <td class="text-center">10</td>
-                    </tr>
-                    <tr>
-                        <td>Total Jawaban Terkirim</td>
-                        <td class="text-center">10</td>
+                        <td class="text-center">{{ $pertanyaan }}</td>
                     </tr>
                     <tr>
                         <td>Jawaban Benar</td>
-                        <td class="text-center">10</td>
+                        <td class="text-center">{{ $jwb_benar }}</td>
                     </tr>
                     <tr>
                         <td>Jawaban Salah</td>
-                        <td class="text-center">0</td>
-                    </tr>
-                    <tr>
-                        <td>Jawaban Kosong</td>
-                        <td class="text-center">0</td>
-                    </tr>
-                    <tr>
-                        <td>Bahasa</td>
-                        <td class="text-center">Indonesia</td>
-                    </tr>
-                    <tr>
-                        <td>Total Nilai</td>
-                        <td class="text-center">10</td>
+                        <td class="text-center">{{ $jwb_salah }}</td>
                     </tr>
                     <th scope="col" class="text-center">Total Nilai</th>
-                    <th scope="col" class="text-center">100</th>
+                    <th scope="col" class="text-center">{{ $data_quiz->nilai_total }}</th>
         </div>
         </tbody>
         </table>
@@ -80,12 +64,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $jawaban)
+                @foreach ($data_detail as $detail)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $jawaban->pertanyaan }}</td>
+                        <td>{{ $detail->quiz_soal->pertanyaan }}</td>
                         <td class="text-center">
-                            {{ $jawaban->validasi_jawaban ? 'benar' : 'salah' }}
+                            @if ($detail->jawaban_benar == 1)
+                                benar
+                            @else
+                                salah
+                            {{-- {{ $detail-> ? 'benar' : 'salah' }} --}}
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -94,7 +83,7 @@
         <div class="row">
             <div class="col-12">
 
-                <a href="{{ route('dashboard.index') }}" class="btn btn-primary text-center"> kembali ke dashboard</a>
+                <a href="{{ route('dashboard.index') }}" class="btn btn-primary text-center"> Kembali ke dashboard</a>
             </div>
         </div>
     </div>
