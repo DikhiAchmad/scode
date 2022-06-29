@@ -13,8 +13,8 @@
             </div>
         </div> --}}
 
-        <div id="content1">
-            <h4 style="text-align: right">Nilai Total : 100%</h4>
+        <div id="content1" class="box">
+            <h4 style="text-align: right">Nilai Total : 100</h4>
 
             <table class="table table-secondary table-bordered table-striped" style="margin-top: 20px">
                 <thead>
