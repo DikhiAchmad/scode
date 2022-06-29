@@ -6,12 +6,11 @@
 
         <h4 class="text-center">Total Pertanyaan Quiz : {{ $pertanyaan }}</h4>
 
-        {{-- <div id="content">
-            <h4 style="margin-left: 50px">Time Speed : 00.59.10</h4>
-            <div class="card grafik" style="width:500px">
+        <div id="content" class="content pt-2" style="width: 400px">
+            <div class="card text-center justify-content-center" style="">
                 <canvas id="myChart"></canvas>
             </div>
-        </div> --}}
+        </div>
 
         <div id="content1">
             <h4 style="text-align: right">Nilai Total : {{ $data_quiz->nilai_total }}</h4>
@@ -81,7 +80,7 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
 
                 <a href="{{ route('dashboard.index') }}" class="btn btn-primary text-center"> Kembali ke dashboard</a>
             </div>
@@ -96,7 +95,7 @@
         const labels = [
             'Jawaban Salah',
             'Jawaban Benar',
-            'Jawaban Kosong',
+            // 'Jawaban Kosong',
 
         ];
         const data = {
@@ -106,17 +105,16 @@
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
-                    'rgba(170, 160, 180, 0.2)'
+                    // 'rgba(170, 160, 180, 0.2)'
                 ],
                 borderColor: [
                     'rgb(255, 99, 132)',
                     'rgb(75, 192, 192)',
-                    'rgb(170, 160, 180)'
+                    // 'rgb(170, 160, 180)'
                 ],
                 data: [
-                    '10',
-                    '10',
-                    '10'
+                    {!! json_encode($jwb_salah) !!},
+                    {!! json_encode($jwb_benar) !!},
                 ],
                 borderWidth: 1.5,
             }]

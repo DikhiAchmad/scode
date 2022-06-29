@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/bundle.css') }}">
-    <link rel="stylesheet" href="css/grade.css">
+    <link rel="stylesheet" href="?css/grade.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
