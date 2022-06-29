@@ -4,12 +4,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KelolaUrutan;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\ContentController;
+use App\Http\Controllers\GradeController;
 // use App\Http\Controllers\HomeController;
+use App\Http\Controllers\QuizizController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\QuizDataController;
+use App\Http\Controllers\QuizSoalController;
 use App\Http\Controllers\KelolaQuizController;
 use App\Http\Controllers\KelolaUserController;
 use App\Http\Controllers\KelolaKelasController;
+use App\Http\Controllers\QuizJawabanController;
 use App\Http\Controllers\ContentKelasController;
 use App\Http\Controllers\KelolaMateriController;
 use App\Http\Controllers\KelolaUrutanController;
@@ -17,7 +22,6 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KelolaPengajarController;
 use App\Http\Controllers\DashboardPengajarController;
-use App\Http\Controllers\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +52,10 @@ Route::group([
     Route::resource('/admin_dashboard', DashboardAdminController::class);
     Route::resource('/kelola_pengajar', KelolaPengajarController::class);
     Route::resource('/kelola_users', KelolaUserController::class);
+    Route::resource('/setting_quiz', QuizizController::class);
+    Route::resource('/setting_soal', QuizSoalController::class);
+    Route::resource('/setting_jawaban', QuizJawabanController::class);
+    Route::resource('/detail_quiz', QuizDataController::class);
 });
 
 Route::group([
@@ -68,10 +76,13 @@ Route::group([
     Route::resource('/dashboard', DashboardUserController::class);
     Route::resource('/kelas_saya', ContentController::class);
     Route::get('/content/{kelas}/{materi}', [ContentController::class, 'index'])->name('content');
-    Route::get('/quiz/{kelas}/{materi}', [QuizController::class, 'index'])->name('quiz');
-    Route::post('/quiz/{kelas}/{materi}', [QuizController::class, 'store'])->name('quiz.store');
-    // Route::resource('/quiz', QuizController::class);
+    // Route::get('/quiz/{kelas}/{materi}', [QuizController::class, 'index'])->name('quiz');
+    // Route::post('/quiz/{kelas}/{materi}', [QuizController::class, 'store'])->name('quiz.store');
+    // // Route::resource('/quiz', QuizController::class);
     Route::get('/grade', [GradeController::class, 'index'])->name('grade');
+    Route::get('/quiz/{kelas}/{materi}', [QuizDataController::class, 'index'])->name('quiz');
+    Route::post('/quiz/{kelas}/{materi}', [QuizDataController::class, 'store'])->name('quiz.store');
+
 });
 
 

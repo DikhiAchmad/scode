@@ -12,4 +12,15 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = ['gambar', 'nama_kelas', 'deskripsi', 'user_id'];
+
+    protected $guarded=['id'];
+
+    public function having_class(){
+        return $this->hasMany(HavingClass::class);
+    }
+
+    public function materi(){
+        return $this->hasMany(Materi::class);
+    }
+
 }

@@ -15,10 +15,10 @@
                 @foreach ($data as $list)
                     <div class="col-md-4">
                         <div class="card-kelas">
-                            <img src="{{ asset('assets/image/' . $list->gambar) }}" alt="banner kelas">
-                            <h1 class="card-title-kelas">{{ $list->nama_kelas }}</h1>
-                            <p class="card-desc-kelas">{{ $list->deskripsi }}</p>
-                            <a href="{{ route('content', [$list->id, 1]) }}" class="stretched-link"></a>
+                            <img src="{{ asset('assets/image/' . $list->kelas->gambar) }}" alt="banner kelas">
+                            <h1 class="card-title-kelas">{{ $list->kelas->nama_kelas }}</h1>
+                            <p class="card-desc-kelas">{{ $list->kelas->deskripsi }}</p>
+                            <a href="{{ route('content', [$list->kelas->id, 1]) }}" class="stretched-link"></a>
                         </div>
                     </div>
                 @endforeach

@@ -15,7 +15,7 @@ class CreateQuizSoalsTable extends Migration
     {
         Schema::create('quiz_soals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kelas_id')->unique();
+            $table->foreignId('quiziz_id');
             $table->string('pertanyaan');
             $table->boolean('status')->default(false);
             $table->timestamps();
