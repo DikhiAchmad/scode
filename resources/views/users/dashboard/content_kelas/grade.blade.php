@@ -95,7 +95,6 @@
         const labels = [
             'Jawaban Salah',
             'Jawaban Benar',
-            // 'Jawaban Kosong',
 
         ];
         const data = {
@@ -105,12 +104,10 @@
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
-                    // 'rgba(170, 160, 180, 0.2)'
                 ],
                 borderColor: [
                     'rgb(255, 99, 132)',
                     'rgb(75, 192, 192)',
-                    // 'rgb(170, 160, 180)'
                 ],
                 data: [
                     {!! json_encode($jwb_salah) !!},
